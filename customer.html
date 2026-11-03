@@ -24,7 +24,7 @@ function show(o){
  +(ok?'<button class="btn" id="dl">تحميل البرنامج</button><div id="dlp"></div>':`<p class="err" style="font-size:15px;margin-top:22px">${msg}</p>`);
  if(!ok)return;
  document.getElementById('dl').onclick=async()=>{
-  try{await sb.rpc('log_download',{p_code:code,p_password:PW})}catch(e){}
+  sb.rpc('log_download',{p_code:code,p_password:PW}).then(()=>{},()=>{});
   const btn=document.getElementById('dl');
   if(o.order_file_path)download(fileUrl(o.order_file_path,o.order_file_name),o.order_file_name,btn);
   else if(o.order_link)window.open(o.order_link,'_blank','noopener');
